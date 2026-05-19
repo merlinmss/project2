@@ -23,7 +23,7 @@ class UserRepository implements UserRepositoryInterface
         if (request()->hasFile('profile_pic')) {
             $storageDevice = config('filesystems.default');
             // delete old image from storage
-            if (Storage::disk($storageDevice)->exists($user->profile_pic)) {
+            if (isset($user->profile_pic) && Storage::disk($storageDevice)->exists($user->profile_pic)) {
                 Storage::disk($storageDevice)->delete($user->profile_pic);
             }
             // store new image and update user record

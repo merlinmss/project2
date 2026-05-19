@@ -26,8 +26,8 @@ class CreateUserRequest extends FormRequest
                     ->ignore(request()->input('id')),
             ],
 
-            'roles' => 'required|array',
-            'roles.*' => 'exists:user_roles,id', 
+        //    'roles' => 'required|array',
+        //    'roles.*' => 'exists:user_roles,id', 
             'profile_photo' => 'image|mimes:jpg,jpeg,png|max:2048',
             'status' => 'required|integer',
         ];
