@@ -10,8 +10,8 @@
         </a>
         </div>
         <div class="navbar-brand brand-logo float-start ms-2">
-            <h4 class="title">JEHOVAH NISSI</h4>
-            <h6 class="subtitle">AG CHURCH</h6>
+            <h4 class="title">AGENTIC - AI</h4>
+            <h6 class="subtitle">AB CDEFGH</h6>
         </div>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-top">
