@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('pastor_area_ids', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('pastor_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('area_id')->constrained('carecell_areas')->cascadeOnDelete();
             $table->timestamps();
+
+            $table->unique(['pastor_id', 'area_id']);
         });
     }
 

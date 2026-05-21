@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('role_name', 55);
             $table->string('identifier', 55)->unique();
             $table->boolean('active')->default(true);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

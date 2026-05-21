@@ -1,5 +1,5 @@
 <x-admin-layout>
-    @php $roleIds = [];
+    @php $roleIds = $userRoles = [];
     $name       =   isset($user) ? $user->name : '';
     $email      =   isset($user) ? $user->email : '';
     $phone      =   isset($user) ? $user->phone : '';
@@ -13,6 +13,7 @@
     } else {
         $roleIds = [];
     }
+    if($roles){ foreach($roles as $role){ $userRoles[$role->id] = $role->role_name; }}
     @endphp
     <div class="page-header">
         <div class="row">
@@ -37,36 +38,22 @@
                         @csrf
                         <input type="hidden" name="id" value="{{ isset($user) ? $user->id : 0 }}">
                       <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" value="{{ $name }}" placeholder="Name">
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                        <x-input label="Name" name="name" :value="$name" required />
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputEmail3">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="{{ $email }}" placeholder="Email">
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                        <x-input label="Email" name="email" :value="$email" required />
                       </div>
                       <div class="form-group">
-                        <label for="exampleInputPassword4">Phone</label>
-                        <input type="number" class="form-control" id="phone" name="phone" value="{{ $phone }}" placeholder="Phone">
-                        <x-input-error :messages="$errors->get('phone')" class="mt-2" />
+                        <x-input label="Phone" name="phone" :value="$phone" required />
                       </div>
-                      <div class="form-group">
-                        <label for="roles">User Roles</label>
-                        <select class="form-control chosen-select" id="roles" name="roles[]" multiple>
-                          @foreach($roles as $role)
-                            <option value="{{ $role->id }}" {{ in_array($role->id, old('roles', $roleIds)) ? 'selected' : '' }}>
-                              {{ $role->role_name }}
-                            </option>
-                          @endforeach
-                        </select>
-                        <x-input-error :messages="$errors->get('roles')" class="mt-2" />
+                        <div class="form-group">
+                            <x-multiselect label="User Roles" name="roles" class="chosen-select" :options="$userRoles" :selected="old('roles', $roleIds)" />
                       </div>
                         <div class="form-group">
                             <label for="profile_pic">Profile Picture</label>
                             @if($profile_pic != '')
                                 <div class="mb-2 col-6 col-md-4">
-                                    <img src="{{ asset('storage/' . $profile_pic) }}" alt="Profile Picture" class="img-thumbnail" width="150">
+                                    <img src="{{ Storage::disk(config('filesystems.default'))->temporaryUrl($user->profile_pic,now()->addMinutes(30)) }}" alt="Profile Picture" class="img-thumbnail" width="150">
                                 </div>
                                 <div class="mb-2 col-6 col-md-4">
 
@@ -77,11 +64,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="status">Status</label>
-                            <select class="form-control  chosen-select" id="status" name="status">
-                              <option value="1" {{ $status == 1 ? 'selected' : '' }}>Active</option>
-                              <option value="0" {{ $status == 0 ? 'selected' : '' }}>Inactive</option>
-                            </select>
+                            <x-select label="Status" name="status" :options="['1' => 'Active', '0' => 'Inactive']" :selected="old('status', $status)" required />
                         </div>
 
                       <button type="submit" class="btn btn-info float-end">Submit</button>

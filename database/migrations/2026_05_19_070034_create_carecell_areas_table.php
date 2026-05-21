@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('area_description')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
+            $table->softDeletes();
         });
     }
 

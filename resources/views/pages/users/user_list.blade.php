@@ -32,7 +32,7 @@
                         @forelse($users as $user)
                             <tr>
                                 <td> 
-                                    <img src="{{ Storage::disk(config('filesystems.default'))->url($user->profile_pic) }}" alt="" class="rounded-circle me-2" width="30" height="30">
+                                    <img src="{{ Storage::disk(config('filesystems.default'))->temporaryUrl($user->profile_pic,now()->addMinutes(30)) }}" alt="" class="rounded-circle me-2" width="30" height="30">
                                     {{ $user->name }}
                                 </td>
                               <td>{{ $user->email }}</td>
@@ -42,6 +42,7 @@
                                     <div class="mb-1">{{ $role->role_name }}</div>
                                 @endforeach
                             </td>
+
                               <td><label class="badge @if($user->status == 1) badge-success @else badge-danger @endif ">@if($user->status == 1) Active @else Inactive @endif</label></td>
                                 <td>
                                     @if (auth()->user()->can('edit-users'))

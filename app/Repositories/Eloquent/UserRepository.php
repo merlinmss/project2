@@ -27,8 +27,9 @@ class UserRepository implements UserRepositoryInterface
                 Storage::disk($storageDevice)->delete($user->profile_pic);
             }
             // store new image and update user record
-            $filename = request()->file('profile_pic')->store("users/$user->id/profile_pic", $storageDevice);
-            $user->profile_pic = $filename;
+            $filePath           =   config('app.uploadBaseDir')."users/$user->id/profile_pic";
+            $filename           =   request()->file('profile_pic')->store($filePath, $storageDevice);
+            $user->profile_pic  =   $filename;
             $user->save();
         }
         return $user;
