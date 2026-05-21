@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\S3UploadController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,5 +30,8 @@ Route::middleware('auth')->group(function () {
 
     
 });
+
+Route::get('s3-upload', [S3UploadController::class, 'uploadForm']);
+Route::post('s3-upload', [S3UploadController::class, 'uploadFile'])->name('s3.upload');
 
 require __DIR__.'/auth.php';

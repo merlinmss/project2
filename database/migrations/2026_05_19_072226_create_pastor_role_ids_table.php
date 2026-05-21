@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pastor_role_ids', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pastor_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('pastor_role_id')->cascadeOnDelete();
+            $table->foreignId('pastor_role_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
 
             $table->unique(['pastor_id', 'pastor_role_id']);
