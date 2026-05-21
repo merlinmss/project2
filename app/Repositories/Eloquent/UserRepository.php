@@ -21,14 +21,14 @@ class UserRepository implements UserRepositoryInterface
             $user->save();
         }
         if (request()->hasFile('profile_pic')) {
-            $storageDevice = config('filesystems.default');
+            $dic = config('filesystems.default');
             // delete old image from storage
-            if (isset($user->profile_pic) && Storage::disk($storageDevice)->exists($user->profile_pic)) {
-                Storage::disk($storageDevice)->delete($user->profile_pic);
+            if (isset($user->profile_pic) && Storage::disk($dic)->exists($user->profile_pic)) {
+                Storage::disk($dic)->delete($user->profile_pic);
             }
             // store new image and update user record
             $filePath           =   config('app.uploadBaseDir')."users/$user->id/profile_pic";
-            $filename           =   request()->file('profile_pic')->store($filePath, $storageDevice);
+            $filename           =   request()->file('profile_pic')->store($filePath, $dic);
             $user->profile_pic  =   $filename;
             $user->save();
         }
