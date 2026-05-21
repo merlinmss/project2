@@ -10,15 +10,15 @@
             <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                 <i class="menu-icon mdi mdi-account-circle-outline"></i>
-                <span class="menu-title">All Users</span>
+                <span class="menu-title">{{ __('Users') }}</span>
                 <i class="menu-arrow"></i>
               </a>
               <div class="collapse" id="auth">
                 <ul class="nav flex-column sub-menu">
                     @if (auth()->user()->can('manage-users'))
-                      <li class="nav-item"> <a class="nav-link" href="{{ route('user.list') }}"> Users List </a></li>
+                      <li class="nav-item"> <a class="nav-link" href="{{ route('user.list') }}">{{ __('Users List') }}  </a></li>
                     @endif
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> User Roles </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html">{{ __('Users Roles') }}</a></li>
                 </ul>
               </div>
             </li>
@@ -30,8 +30,8 @@
               </a>
               <div class="collapse" id="settings">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="#"> General Settings </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="#"> Site Settings </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="#"> {{ __('General Settings') }} </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="#"> {{ __('Site Settings') }} </a></li>
                 </ul>
               </div>
             </li>
