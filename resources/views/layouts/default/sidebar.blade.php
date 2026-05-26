@@ -10,7 +10,7 @@
             <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                 <i class="menu-icon mdi mdi-account-circle-outline"></i>
-                <span class="menu-title">{{ __('Users') }}</span>
+                <span class="menu-title">{{ __('All Users') }}</span>
                 <i class="menu-arrow"></i>
               </a>
               <div class="collapse" id="auth">
@@ -25,7 +25,7 @@
             <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#settings" aria-expanded="false" aria-controls="settings">
                 <i class="menu-icon mdi mdi-account-circle-outline"></i>
-                <span class="menu-title">Settings</span>
+                <span class="menu-title">{{ __('Settings') }}</span>
                 <i class="menu-arrow"></i>
               </a>
               <div class="collapse" id="settings">
