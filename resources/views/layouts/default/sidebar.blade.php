@@ -18,7 +18,7 @@
                     @if (auth()->user()->can('manage-users'))
                       <li class="nav-item"> <a class="nav-link" href="{{ route('user.list') }}">{{ __('Users List') }}  </a></li>
                     @endif
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html">{{ __('Users Roles') }}</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="#">{{ __('Users Roles') }}</a></li>
                 </ul>
               </div>
             </li>
