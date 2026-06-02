@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     // Check role access using middleware
     Route::middleware('roles:super_admin,admin')->group(function () {
         Route::get('/user/detail/{id}', [UserController::class, 'show'])->name('user.detail');
+        Route::delete('/user/delete/{id}', [UserController::class, 'destroy'])->name('user.delete');
     });
 
     

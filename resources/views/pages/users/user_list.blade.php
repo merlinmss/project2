@@ -1,4 +1,12 @@
 <x-admin-layout>
+    @foreach (['success', 'danger', 'warning', 'info'] as $msg)
+        @if(session()->has($msg))
+            <div class="alert alert-{{ $msg }} alert-dismissible fade show" role="alert">
+                {{ session($msg) }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+    @endforeach
     <div class="page-header">
         <div class="row">
             <div class="col-md-8">
@@ -46,10 +54,14 @@
                               <td><label class="badge @if($user->status == 1) badge-success @else badge-danger @endif ">@if($user->status == 1) Active @else Inactive @endif</label></td>
                                 <td>
                                     @if (auth()->user()->can('edit-users'))
-                                    <a href="{{ route('user.detail',$user->id) }}" class="btn btn-sm btn-info edit-btn">Edit </a>
+                                    <a href="{{ route('user.detail',$user->id) }}" class="btn btn-sm btn-info edit-btn float-start me-2">Edit </a>
                                     @endif
                                     @if (auth()->user()->can('delete-users'))
-                                    <a href="" class="btn btn-sm btn-danger del-btn">Delete </a>
+                                        <form action="{{ route('user.delete',$user->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to leave this user?');" class="float-start">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger del-btn">Delete</button>
+                                        </form>
                                      @endif
                                 </td>
                             </tr>
