@@ -20,6 +20,7 @@ class UserRepository implements UserRepositoryInterface
             $user = new User($data);
             $user->save();
         }
+
         if (request()->hasFile('profile_pic')) {
             $dic = config('filesystems.default');
             // delete old image from storage

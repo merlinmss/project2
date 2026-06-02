@@ -1,14 +1,15 @@
 <?php
-namespace App\Actions\User;
+namespace App\Actions;
 
 use App\DTOs\User\CreateUserData;
 use Illuminate\Support\Facades\Hash;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Events\UserCreated;
+use App\Models\User;
 use App\Models\UserRole;
 use App\Models\UserRoleId;
 use App\Mail\WelcomeMail;
-class CreateUserAction
+class UserAction
 {
     public function __construct(
         protected UserRepositoryInterface $userRepository
@@ -34,6 +35,16 @@ class CreateUserAction
         if($user){ $roleIds         =   $this->userRepository->saveUserRoleIds($user);}
         if(request()->input('id')   >   0) event(new UserCreated($user));
         return $user;
+    }
+
+    public function deleteUser($id){
+        $record = User::find($id);
+        if ($record) {
+            $record->delete();
+            return $record->id;
+        }else{
+            return false;
+        }
     }
     
 }
