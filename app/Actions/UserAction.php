@@ -38,13 +38,8 @@ class UserAction
     }
 
     public function deleteUser($id){
-        $record = User::find($id);
-        if ($record) {
-            $record->delete();
-            return $record->id;
-        }else{
-            return false;
-        }
+        $record                     =   User::find($id);
+        if ($record)    {   $record ->  delete(); return $record->id; }else{ return false; }
     }
     
 }

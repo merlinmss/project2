@@ -7,6 +7,11 @@ use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Eloquent\UserRepository;
 
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Pagination\Paginator;
+
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Http\Request;
+use Illuminate\Cache\RateLimiting\Limit;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -49,5 +54,16 @@ class AppServiceProvider extends ServiceProvider
                 ->whereIn('identifier', ['super_admin'])
                 ->exists();
         });
+
+        RateLimiter::for('login', function (Request $request) {
+            return [
+                Limit::perMinute(25)->by(
+                    $request->ip()
+                ),
+            ];
+        });
+        
+        // Use Bootstrap 5 for pagination links
+        Paginator::useBootstrapFive();
     }
 }

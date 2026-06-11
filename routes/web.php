@@ -32,6 +32,12 @@ Route::middleware('auth')->group(function () {
     
 });
 
+// For API calls
+Route::get('/api-profile', [UserController::class, 'apiProfile']);
+Route::get('/user/api/list', [UserController::class, 'apiUserList'])->name('user.api.list');
+// Route::get('/user/api-list', [UserController::class, 'apiUserList'])->name('user.api.list')->middleware('can:manage-users');
+
+// For test s3 upload
 Route::get('s3-upload', [S3UploadController::class, 'uploadForm']);
 Route::post('s3-upload', [S3UploadController::class, 'uploadFile'])->name('s3.upload');
 

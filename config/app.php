@@ -124,5 +124,5 @@ return [
     ],
 
     'uploadBaseDir' => env('BASE_UPLOAD_FOLDER'),
-
+    'api_url' => env('API_URL', 'http://localhost'),
 ];
