@@ -13,11 +13,11 @@ class UserRepository implements UserRepositoryInterface
     public function save(array $data): User
     {
         if(request()->input('id')>0) {
-            $user = User::find(request()->input('id'));
-            foreach($data as $k=>$val){ $user->$k = $val; }
+            $user           =   User::find(request()->input('id'));
+            foreach($data   as  $k=>$val){ $user->$k = $val; }
             $user->save();
         }else{
-            $user = new User($data);
+            $user           =   new User($data);
             $user->save();
         }
 
@@ -43,7 +43,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function fetchUserList()
     {
-        return User::with('roles')->paginate(10);
+        return User::with('roles')->paginate(5);
     }
     
     public function find($id)

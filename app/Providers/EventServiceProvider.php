@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Auth\Events\Login;
+use App\Listeners\LogSuccessfulLogin;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -14,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         \App\Events\UserRegistered::class => [
             \App\Listeners\SendWelcomeEmail::class,
+        ],
+        Login::class => [
+            LogSuccessfulLogin::class,
         ],
     ];
 

@@ -5,12 +5,15 @@ use App\Actions\UserAction;
 use App\DTOs\User\CreateUserData;
 use App\Http\Requests\User\CreateUserRequest;
 
+use App\Services\UserService;
+
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    public function __construct(UserAction $action){
-        $this->action = $action;
+    public function __construct(UserAction $action, UserService $userService){
+        $this->action           =   $action;
+        $this->userService      =   $userService;
     }
     public function get(){
         return $this->action->list();
@@ -34,6 +37,14 @@ class UserController extends Controller
             return redirect()->back()->with('success', 'Record deleted successfully!');
         else
             return redirect()->back()->with('danger', 'Somthing went wrong. Plrase try later');
+    }
+
+    public function apiProfile(){
+        $result = $this->userService->getUserProfile();
+    }
+
+    public function apiUserList(){
+        return   $this->userService->getUserList();
     }
 
 }

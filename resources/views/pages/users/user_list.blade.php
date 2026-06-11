@@ -7,6 +7,9 @@
             </div>
         @endif
     @endforeach
+    @php
+      //  echo '<pre>'; print_r($users); echo '</pre>';
+    @endphp
     <div class="page-header">
         <div class="row">
             <div class="col-md-8">
@@ -29,10 +32,11 @@
                     <table class="table">
                       <thead>
                         <tr>
-                          <th>Name</th>
-                          <th>Email</th>
-                          <th>Phone</th>
-                          <th>Status</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Roles</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                       </thead>
@@ -72,6 +76,9 @@
                         @endforelse
                       </tbody>
                     </table>
+                    <div class="mt-4">
+                        {{ $users->links() }}
+                    </div>
                 </div>
             </div>
         </div>
