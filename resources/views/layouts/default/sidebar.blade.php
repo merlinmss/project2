@@ -10,7 +10,7 @@
             <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                 <i class="menu-icon mdi mdi-account-circle-outline"></i>
-                <span class="menu-title">{{ __('All Users') }}</span>
+                <span class="menu-title">{{ __('Users') }}</span>
                 <i class="menu-arrow"></i>
               </a>
               <div class="collapse" id="auth">
