@@ -18,7 +18,7 @@
                     @if (auth()->user()->can('manage-users'))
                       <li class="nav-item"> <a class="nav-link" href="{{ route('user.list') }}">{{ __('Users List') }}  </a></li>
                     @endif
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('user.api.list') }}">{{ __('Users List (API)') }}</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('user.api.list') }}">{{ __('APIUsers List') }}</a></li>
                 </ul>
               </div>
             </li>
