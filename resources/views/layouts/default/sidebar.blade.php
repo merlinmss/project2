@@ -16,9 +16,9 @@
               <div class="collapse" id="auth">
                 <ul class="nav flex-column sub-menu">
                     @if (auth()->user()->can('manage-users'))
-                      <li class="nav-item"> <a class="nav-link" href="{{ route('user.list') }}">{{ __('Users (Web)') }}  </a></li>
+                      <li class="nav-item"> <a class="nav-link" href="{{ route('user.list') }}">{{ __('Users List') }}  </a></li>
                     @endif
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('user.api.list') }}">{{ __('Users (API)') }}</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('user.api.list') }}">{{ __('Users List (API)') }}</a></li>
                 </ul>
               </div>
             </li>
