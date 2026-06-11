@@ -10,15 +10,15 @@
             <li class="nav-item">
               <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                 <i class="menu-icon mdi mdi-account-circle-outline"></i>
-                <span class="menu-title">{{ __('Agentic Users') }}</span>
+                <span class="menu-title">{{ __('Users') }}</span>
                 <i class="menu-arrow"></i>
               </a>
               <div class="collapse" id="auth">
                 <ul class="nav flex-column sub-menu">
                     @if (auth()->user()->can('manage-users'))
-                      <li class="nav-item"> <a class="nav-link" href="{{ route('user.list') }}">{{ __('Web Users List') }}  </a></li>
+                      <li class="nav-item"> <a class="nav-link" href="{{ route('user.list') }}">{{ __('Users (Web)') }}  </a></li>
                     @endif
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('user.api.list') }}">{{ __('API Users List') }}</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('user.api.list') }}">{{ __('Users (API)') }}</a></li>
                 </ul>
               </div>
             </li>
